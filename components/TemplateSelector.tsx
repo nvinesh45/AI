@@ -1,31 +1,33 @@
 import React from 'react';
-import type { Template, PromptData } from '../types';
+import type { Template } from '../types';
+import { Card } from './ui/Card';
+import { IconWand } from './ui/Icon';
 
 interface TemplateSelectorProps {
   templates: Template[];
-  onSelect: (template: PromptData) => void;
+  onSelect: (template: Template) => void;
 }
 
 export const TemplateSelector: React.FC<TemplateSelectorProps> = ({ templates, onSelect }) => {
   return (
     <div>
-        <h2 className="text-lg font-semibold mb-1 text-slate-800 dark:text-white">Start with a Template</h2>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Select a common use-case to pre-fill the form with a helpful example.</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {templates.map((template) => {
-                const {id, name, description, ...promptData} = template;
-                return (
-                    <button
-                        key={id}
-                        onClick={() => onSelect(promptData)}
-                        className="text-left p-4 bg-white dark:bg-slate-900 rounded-lg shadow-sm hover:shadow-md hover:bg-gray-50 dark:hover:bg-slate-800/50 border border-slate-200 dark:border-slate-800 transition-all focus:outline-none focus:ring-2 focus:ring-brand-primary"
-                    >
-                        <h4 className="font-semibold text-slate-800 dark:text-white">{name}</h4>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{description}</p>
-                    </button>
-                );
-            })}
-        </div>
+       <h3 className="text-xl font-bold text-slate-800 text-center mb-2">Not sure where to start?</h3>
+       <p className="text-center text-slate-600 mb-6">Select a template to instantly fill the form with a great starting point.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {templates.map(template => (
+          <button
+            key={template.id}
+            onClick={() => onSelect(template)}
+            className="text-left p-4 bg-white border border-slate-200/75 rounded-xl shadow-lg hover:border-brand-primary hover:shadow-xl transition-all duration-200"
+          >
+            <div className="flex items-center mb-2">
+                <IconWand className="h-5 w-5 mr-3 text-brand-primary" />
+                <h4 className="font-semibold text-slate-800">{template.name}</h4>
+            </div>
+            <p className="text-sm text-slate-500">{template.description}</p>
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 import type { PromptData } from '../types';
 
@@ -16,37 +15,27 @@ Follow these instructions for creating the prompt:
 1.  **Role & Goal:** Start by defining the AI's role and its primary objective.
 2.  **Clarity & Specificity:** Make the instructions unambiguous. Break down complex tasks into smaller, manageable steps.
 3.  **Context:** Use delimiters like \`\`\` or <context> to clearly separate provided context from the instructions.
-4.  **Persona & Tone:** Clearly state the desired persona and tone for the response.
+4.  **Tone:** Clearly state the desired tone for the response.
 5.  **Structure & Format:** Explicitly define the desired output format (e.g., JSON, Markdown table, bullet points).
 6.  **Constraints:** List any constraints, such as word count, topics to avoid, or specific language to use.
-7.  **Examples (Few-shot):** If the user provides an example, incorporate it to guide the model's output style and structure.
 
 ---
 **USER'S INPUT:**
 
-**1. Primary Goal/Task:**
+**1. Main Goal:**
 ${data.goal || 'Not specified'}
 
-**2. Key Context (Background info, data, text to analyze):**
+**2. Context:**
 ${data.context || 'Not specified'}
 
-**3. AI Persona (Act as a...):**
-${data.persona || 'Helpful assistant'}
-
-**4. Target Audience for the Output:**
-${data.audience || 'General audience'}
-
-**5. Desired Tone:**
+**3. Desired Tone:**
 ${data.tone || 'Neutral'}
 
-**6. Required Output Format:**
+**4. Preferred Format:**
 ${data.format || 'Clear text'}
 
-**7. Constraints & Rules to Follow:**
+**5. Constraints to Follow:**
 ${data.constraints || 'None'}
-
-**8. Example of Desired Output:**
-${data.example || 'None'}
 
 ---
 **GENERATED PROMPT:**
